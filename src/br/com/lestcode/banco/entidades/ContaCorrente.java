@@ -1,4 +1,4 @@
 package br.com.lestcode.banco.entidades;
 
-public class ContaCorrente {
+public class ContaCorrente  extends Conta{
 }
