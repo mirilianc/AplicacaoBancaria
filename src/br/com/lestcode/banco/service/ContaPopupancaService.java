@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 
 public class ContaPopupancaService extends ContaService{
 
-    public static void depositar(Conta conta, BigDecimal valor) {
+    public void depositar(Conta conta, BigDecimal valor) {
         if (conta.getPessoa() instanceof PessoaJuridica){
             BigDecimal valorDepositado = valor.multiply(PessoaJuridica.TX_POUPANCA);
             conta.getSaldo().add(valorDepositado);

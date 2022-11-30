@@ -6,7 +6,7 @@ import br.com.lestcode.banco.exceptions.ValoresException;
 
 import java.math.BigDecimal;
 
-public class ContaService {
+public abstract class ContaService {
 
     protected void adicionarDinheiro(Conta conta, BigDecimal valor) throws ValoresException{
         if(valor.compareTo(BigDecimal.ZERO) <= 0 ){
@@ -19,7 +19,7 @@ public class ContaService {
 
     }
 
-    public static void sacar(Conta conta, BigDecimal valor) throws ValoresException {
+    public void sacar(Conta conta, BigDecimal valor) throws ValoresException {
         if (valor.compareTo(BigDecimal.ZERO) <= 0){
             throw new ValoresException("Valor nao permitido!");
         }
@@ -38,7 +38,7 @@ public class ContaService {
         consultarSaldo(conta);
     }
 
-    public static void transferir(Conta conta, BigDecimal valor) throws ValoresException {
+    public void transferir(Conta conta, BigDecimal valor) throws ValoresException {
         if (valor.compareTo(BigDecimal.ZERO) <= 0){
             throw new ValoresException("Valor nao permitido!");
         }
@@ -48,15 +48,15 @@ public class ContaService {
 
         if (conta.getPessoa() instanceof PessoaJuridica){
             BigDecimal valorsacado = valor.multiply(PessoaJuridica.TX_SAQUETRANSF);
-            conta.getSaldo().subtract(valorsacado);
+            conta.setSaldo(conta.getSaldo().subtract(valorsacado));
         }else {
-            conta.getSaldo().subtract(valor);
+            conta.setSaldo(conta.getSaldo().subtract(valor));
         }
         System.out.println("Transferência realizada com Sucesso!!");
         System.out.printf("Valor transferido: R$%.2f\n",valor);
         consultarSaldo(conta);
     }
-    public static void depositar(Conta conta, BigDecimal valor) throws ValoresException {
+    public void depositar(Conta conta, BigDecimal valor) throws ValoresException {
         if (valor.compareTo(BigDecimal.ZERO) <= 0){
             throw new ValoresException("Valor nao permitido!");
         }
@@ -67,7 +67,7 @@ public class ContaService {
         consultarSaldo(conta);
     }
 
-    public static void consultarSaldo(Conta conta) {
+    public void consultarSaldo(Conta conta) {
         System.out.printf("\nO Saldo de sua conta é de R$%.2f\n", conta.getSaldo());
     }
 

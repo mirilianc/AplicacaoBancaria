@@ -5,6 +5,6 @@ import java.math.BigDecimal;
 public class ContaInvestimento  extends Conta{
 
     public ContaInvestimento(long numconta, BigDecimal saldo, Pessoa pessoa) {
-        super();
+        super(numconta, saldo, pessoa);
     }
 }
