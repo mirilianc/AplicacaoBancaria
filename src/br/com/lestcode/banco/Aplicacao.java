@@ -38,7 +38,6 @@ public class Aplicacao {
 
                 }
             }
-
             private void abrirConta() throws ValidacaoException, CpfCnpjException, ValoresException {
                 String tipoConta = null;
                 Pessoa pessoa = null;
