@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 public class ContaCorrenteService extends ContaService {
 
-    public void depositar(Conta conta, BigDecimal valor) {
+    public static void depositar(Conta conta, BigDecimal valor) {
         try {
             ContaService.depositar(conta, valor);
         }
