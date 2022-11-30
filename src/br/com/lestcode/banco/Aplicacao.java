@@ -144,8 +144,6 @@ public class Aplicacao {
                     System.out.printf("Informe a operacao que deseja realizar: ");
                     operacao = a.nextInt();
 
-
-                    System.out.println("Saldo da CONTA" + conta.getSaldo());
                     try {
                         switch (operacao) {
                             case 1:
