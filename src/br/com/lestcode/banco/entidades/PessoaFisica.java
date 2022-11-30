@@ -11,6 +11,10 @@ public class PessoaFisica extends Pessoa{
     private String cpf;
     private String sexo;
 
+    public PessoaFisica(String nome, String sexo, String endereco, String cpf) {
+        super();
+    }
+
     public BigDecimal getTX_SAQUETRANSF() {
         return TX_SAQUETRANSF;
     }

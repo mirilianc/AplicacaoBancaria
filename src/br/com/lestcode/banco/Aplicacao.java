@@ -4,19 +4,17 @@ import br.com.lestcode.banco.entidades.*;
 import br.com.lestcode.banco.exceptions.CpfCnpjException;
 import br.com.lestcode.banco.exceptions.ValidacaoException;
 import br.com.lestcode.banco.exceptions.ValoresException;
+import br.com.lestcode.banco.service.ContaCorrenteService;
 import br.com.lestcode.banco.service.ContaService;
 
 import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class Aplicacao {
-
-    public static void main(String[] args) {
-
-        public class Main {
             static Scanner a = new Scanner(System.in);
             static String encerrar;
 
+            ContaService contaService = new ContaService();
             public static void main(String[] args) {
 
                 Aplicacao aplicacao = new Aplicacao();
@@ -125,6 +123,8 @@ public class Aplicacao {
                         System.out.println("OPÇÃO INVALIDA");
                         System.exit(0);
                 }
+
+
                 operacoes(conta);
             }
 
@@ -147,25 +147,25 @@ public class Aplicacao {
                             case 1:
                                 System.out.printf("Informe o valor do saque: ");
                                 BigDecimal saque = a.nextBigDecimal();
-                                ContaService.sacar(saque);
+                                ContaService.sacar(conta, saque);
                                 break;
                             case 2:
                                 System.out.printf("Informe o valor do deposito: ");
                                 BigDecimal deposito = a.nextBigDecimal();
-                                ContaService.depositar(deposito);
+                                ContaService.depositar(conta, deposito);
                                 break;
                             case 3:
                                 System.out.printf("Informe o valor da transferencia: ");
                                 BigDecimal transferencia = a.nextBigDecimal();
-                                ContaService.transferir(transferencia);
+                                ContaService.transferir(conta,transferencia);
                                 break;
                             case 4:
                                 System.out.printf("Informe o valor do investimento: ");
                                 BigDecimal investimento = a.nextBigDecimal();
-                                ContaService.investir(investimento);
+                          //      ContaService.investir(conta,investimento);
                                 break;
                             case 5:
-                                ContaService.consultarSaldo();
+                                ContaService.consultarSaldo(conta);
                                 break;
                             case 6:
                                 System.out.println(conta.toString());
@@ -188,7 +188,3 @@ public class Aplicacao {
 
             }
         }
-
-
-    }
-}

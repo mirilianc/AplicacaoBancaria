@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AplicacaoBancaria.iml" filepath="$PROJECT_DIR$/AplicacaoBancaria.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../ProjetoAppBancario/ProjetoAppBancario.iml" filepath="$PROJECT_DIR$/../ProjetoAppBancario/ProjetoAppBancario.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../locadoraveiculos-T950/locadoraveiculos-T950.iml" filepath="$PROJECT_DIR$/../locadoraveiculos-T950/locadoraveiculos-T950.iml" />
     </modules>
   </component>
 </project>

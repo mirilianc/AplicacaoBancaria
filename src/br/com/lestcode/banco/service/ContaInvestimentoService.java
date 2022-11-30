@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 public class ContaInvestimentoService extends ContaService{
 
-    public void investir(BigDecimal valor) {
+    public void depositar(BigDecimal valor) {
         try {
             BigDecimal valorDepositado = valor.multiply(pessoa.getTaxaInvestimento());
 
