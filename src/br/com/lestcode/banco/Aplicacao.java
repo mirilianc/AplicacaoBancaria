@@ -4,16 +4,15 @@ import br.com.lestcode.banco.entidades.*;
 import br.com.lestcode.banco.exceptions.CpfCnpjException;
 import br.com.lestcode.banco.exceptions.ValidacaoException;
 import br.com.lestcode.banco.exceptions.ValoresException;
+import br.com.lestcode.banco.service.ContaCorrenteService;
+import br.com.lestcode.banco.service.ContaInvestimentoService;
+import br.com.lestcode.banco.service.ContaPopupancaService;
 import br.com.lestcode.banco.service.ContaService;
 
 import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class Aplicacao {
-
-    public static void main(String[] args) {
-
-        public class Main {
             static Scanner a = new Scanner(System.in);
             static String encerrar;
 
@@ -39,11 +38,11 @@ public class Aplicacao {
 
                 }
             }
-
             private void abrirConta() throws ValidacaoException, CpfCnpjException, ValoresException {
                 String tipoConta = null;
                 Pessoa pessoa = null;
                 Conta conta = null;
+                ContaService contaService = null;
 
                 System.out.println("<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>");
                 System.out.println("        BEM VINDO AO BANCO ITAU-LETSCODE      ");
@@ -114,28 +113,30 @@ public class Aplicacao {
                 switch (tipoConta) {
                     case "CC":
                         conta = new ContaCorrente(numconta, saldo, pessoa);
+                        contaService = new ContaCorrenteService();
                         break;
                     case "CI":
                         conta = new ContaInvestimento(numconta, saldo, pessoa);
+                        contaService = new ContaInvestimentoService();
                         break;
                     case "CP":
-                        conta = new ContaPoupanca(numconta, saldo, pessoa);
+                        conta = new ContaPoupanca(numconta, saldo, (PessoaFisica)pessoa);
+                        contaService = new ContaPopupancaService();
                         break;
                     default:
                         System.out.println("OPÇÃO INVALIDA");
                         System.exit(0);
                 }
-                operacoes(conta);
+                operacoes(contaService, conta);
             }
 
-            private static void operacoes(Conta conta) {
+            private void operacoes(ContaService contaService, Conta conta) {
                 int operacao;
                 do {
                     System.out.println("\nOperações:");
                     System.out.println("1-SACAR");
                     System.out.println("2-DEPOSITAR");
                     System.out.println("3-TRANSFERIR");
-                    System.out.println("4-INVESTIR");
                     System.out.println("5-CONSULTAR SALDO");
                     System.out.println("6-CONSULTAR DADOS DA CONTA");
                     System.out.println("7-ENCERRAR");
@@ -147,25 +148,20 @@ public class Aplicacao {
                             case 1:
                                 System.out.printf("Informe o valor do saque: ");
                                 BigDecimal saque = a.nextBigDecimal();
-                                ContaService.sacar(saque);
+                                contaService.sacar(conta, saque);
                                 break;
                             case 2:
                                 System.out.printf("Informe o valor do deposito: ");
                                 BigDecimal deposito = a.nextBigDecimal();
-                                ContaService.depositar(deposito);
+                                contaService.depositar(conta, deposito);
                                 break;
                             case 3:
                                 System.out.printf("Informe o valor da transferencia: ");
                                 BigDecimal transferencia = a.nextBigDecimal();
-                                ContaService.transferir(transferencia);
-                                break;
-                            case 4:
-                                System.out.printf("Informe o valor do investimento: ");
-                                BigDecimal investimento = a.nextBigDecimal();
-                                ContaService.investir(investimento);
+                                contaService.transferir(conta,transferencia);
                                 break;
                             case 5:
-                                ContaService.consultarSaldo();
+                                contaService.consultarSaldo(conta);
                                 break;
                             case 6:
                                 System.out.println(conta.toString());
@@ -188,7 +184,3 @@ public class Aplicacao {
 
             }
         }
-
-
-    }
-}
