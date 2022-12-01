@@ -2,12 +2,16 @@ package br.com.lestcode.banco.entidades;
 
 import java.math.BigDecimal;
 
-public class Conta {
+public abstract class Conta {
 
     private long numconta;
     private BigDecimal saldo;
     Pessoa pessoa;
-
+    public Conta(long numconta, BigDecimal saldo, Pessoa pessoa) {
+            this.numconta = numconta;
+            this.saldo = saldo;
+            this.pessoa = pessoa;
+    }
     public long getNumconta() {
         return numconta;
     }
