@@ -1,3 +1,4 @@
+
 package br.com.lestcode.banco;
 
 import br.com.lestcode.banco.entidades.*;
@@ -8,6 +9,9 @@ import br.com.lestcode.banco.service.ContaCorrenteService;
 import br.com.lestcode.banco.service.ContaInvestimentoService;
 import br.com.lestcode.banco.service.ContaPopupancaService;
 import br.com.lestcode.banco.service.ContaService;
+import br.com.lestcode.banco.service.validation.ValidarPessoa;
+import br.com.lestcode.banco.service.validation.ValidarPessoaFisica;
+import br.com.lestcode.banco.service.validation.ValidarPessoaJuridica;
 
 import java.math.BigDecimal;
 import java.util.Scanner;
@@ -69,16 +73,20 @@ public class Aplicacao {
 
                 switch (tipoPessoa){
                     case "PF":
+
+
                         System.out.printf("Informe seu sexo ('F' ou 'M'):  ");
                         String sexo = a.nextLine().toUpperCase();
-                        if (!sexo.equals("F") && !sexo.equals("M")){
-                            throw new ValidacaoException("Campo Sexo deve ser F ou M!");
-                        }
+                       if (!sexo.equals("F") && !sexo.equals("M")){
+                          throw new ValidacaoException("Campo Sexo deve ser F ou M!");
+                    }
 
                         System.out.printf("Informe seu CPF: ");
                         String cpf = a.nextLine();
 
                         pessoa = new PessoaFisica(nome, sexo, endereco, cpf);
+                        ValidarPessoa validarPessoa = new ValidarPessoaFisica();
+                        validarPessoa.validarDocumento(pessoa);
 
                         System.out.println("Informe o tipo de conta que quer abrir: ");
                         System.out.printf("CC - Conta Corrente, CI - Conta Investimento, CP - Conta Popupança \n Tipo: ");
@@ -88,10 +96,14 @@ public class Aplicacao {
                         }
                         break;
                     case "PJ":
+
+                        validarPessoa = new ValidarPessoaJuridica();
                         System.out.printf("Informe seu CNPJ: ");
                         String cnpj = a.nextLine();
 
                         pessoa = new PessoaJuridica(nome, endereco, cnpj);
+
+                        validarPessoa.validarDocumento(pessoa);
 
                         System.out.println("Informe o tipo de conta que quer abrir: ");
                         System.out.println("CC - Conta Corrente, CI - Conta Investimento \n Tipo: ");
@@ -164,7 +176,8 @@ public class Aplicacao {
                                 contaService.consultarSaldo(conta);
                                 break;
                             case 6:
-                                System.out.println(conta.toString());
+                                System.out.println("Numero da conta: " +conta.getNumconta());
+                                System.out.println("Saldo da conta: " +conta.getSaldo());
                                 break;
                             case 7:
                                 System.exit(0);

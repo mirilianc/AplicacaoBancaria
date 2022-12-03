@@ -2,19 +2,20 @@ package br.com.lestcode.banco.service.validation;
 
 import br.com.lestcode.banco.entidades.PessoaJuridica;
 import br.com.lestcode.banco.exceptions.CpfCnpjException;
+import br.com.lestcode.banco.exceptions.ValidacaoException;
 
 public class ValidarPessoaJuridica implements ValidarPessoa<PessoaJuridica> {
 
     @Override
-    public void validarDocumento(PessoaJuridica pessoa) {
+    public void validarDocumento(PessoaJuridica pessoa) throws CpfCnpjException {
+
         pessoa.getCnpj();
-       }
 
-    public void setCnpj(String cnpj) throws CpfCnpjException {
-
-        if (!isCnpj(cnpj)) {
+        if (!isCnpj(pessoa.getCnpj())) {
             throw new CpfCnpjException("CPF/CNPJ invalido");
         }
+
+
     }
 
     public static boolean isCnpj(String cnpj) {
@@ -29,4 +30,6 @@ public class ValidarPessoaJuridica implements ValidarPessoa<PessoaJuridica> {
             return (true);
         }
     }
+
+
 }

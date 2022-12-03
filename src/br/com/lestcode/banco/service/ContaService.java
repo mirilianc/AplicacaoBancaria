@@ -29,9 +29,9 @@ public abstract class ContaService {
         if (conta.getPessoa() instanceof PessoaJuridica){
 
             BigDecimal valorsacado = valor.multiply(PessoaJuridica.TX_SAQUETRANSF);
-            conta.getSaldo().subtract(valorsacado);
+            conta.setSaldo(conta.getSaldo().subtract(valorsacado));
         }else {
-            conta.getSaldo().subtract(valor);
+            conta.setSaldo(conta.getSaldo().subtract(valor));
         }
         System.out.println("Saque realizado com Sucesso!!");
         System.out.printf("Valor sacado: R$%.2f\n",valor);

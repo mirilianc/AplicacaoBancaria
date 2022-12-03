@@ -12,15 +12,20 @@ public class PessoaFisica extends Pessoa{
     private String sexo;
 
     public PessoaFisica(String nome, String sexo, String endereco, String cpf) {
-        super();
+        super(nome,endereco);
+        this.setSexo(sexo);
+        this.setCpf(cpf);
     }
+
+
+
     public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
+    public String setCpf(String cpf) {
         this.cpf = cpf;
-    }
+       return cpf;}
 
     public String getSexo() {
         return sexo;

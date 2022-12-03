@@ -5,6 +5,11 @@ public abstract class Pessoa {
     private String nome;
     private String endereco;
 
+    public Pessoa(String nome, String endereco) {
+    }
+
+
+
     public String getNome() {
         return nome;
     }
@@ -20,4 +25,6 @@ public abstract class Pessoa {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
+
+    
 }
