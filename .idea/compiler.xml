@@ -3,6 +3,8 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
       <module name="AppBancarioWelton" target="17" />
+      <module name="AppBancarioWelton.main" target="11" />
+      <module name="AppBancarioWelton.test" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
